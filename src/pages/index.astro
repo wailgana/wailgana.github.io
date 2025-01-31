@@ -1,0 +1,72 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+import AboutMe from '@/components/AboutMe.astro';
+import Badge from '@/components/Badge.astro';
+import Briefcase from '@/components/icons/Briefcase.astro';
+import CodeIcon from '@/components/icons/Code.astro';
+import Experience from '@/components/Experience.astro';
+import GitHubIcon from '@/components/icons/GitHub.astro';
+import LinkedInIcon from '@/components/icons/LinkedIn.astro';
+import MailIcon from '@/components/icons/Mail.astro';
+import ProfileCheck from '@/components/icons/ProfileCheck.astro';
+import Projects from '@/components/Projects.astro';
+import SectionContainer from '@/components/SectionContainer.astro';
+import SocialPill from '@/components/SocialPill.astro';
+---
+
+<Layout icon="/User.png" title="Portfolio de Wail Gana - Développeur et Programmeur Web avec 5 ans d'expérience" description="Engagez Wail Gana pour créer votre application web ou mobile. Développeur Web Full-Stack. Spécialisé dans la création d'applications uniques.">
+	<main class="px-4">
+		<SectionContainer class="py-16 md:py-36">
+			<img class="rounded-full size-12 mb-4" src="/User.png" alt="Logo de Wail Gana" />
+			<a href="https://linkedin.com/in/wailgana" target="_blank" rel="noopener" class="flex justify-center items-center hover:scale-105 transition ml-4">
+				<Badge>Disponible</Badge>
+			</a>
+			<h1 class="text-zinc-900 dark:text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
+				Bonjour, je suis Wa-îl Gana
+			</h1>
+			<h2 class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white">
+				<span>Je suis actuellement en 3 ème année de</span><span class="text-yellow-800 dark:text-yellow-200"> BUT Informatique à Blagnac</span>
+				<span class="text-red-800 dark:text-red-200"> J'habite à Toulouse, en France</span>.
+				<span class="text-sky-800 dark:text-sky-200">J'envisage d'être un futur Ingénieur en Cybersécurité.</span>
+			</h2>
+
+			<nav class="flex gap-4 mt-8 flex-wrap">
+				<SocialPill href="https://github.com/wailgana">
+					<GitHubIcon class="size-4 md:size-6" />
+					GitHub
+				</SocialPill>
+				<SocialPill href="mailto:gana.wail.france@gmail.com">
+					<MailIcon class="size-4 md:size-6" />
+					gana.wail.france@gmail.com
+				</SocialPill>
+			</nav>
+		</SectionContainer>
+
+		<div class="space-y-24">
+			<SectionContainer id="experiencia">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+					<Briefcase class="size-7" />
+					Expérience professionnelle
+				</h2>
+				<Experience />
+			</SectionContainer>
+
+			<SectionContainer id="proyectos">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+					<CodeIcon class="size-7" />
+					Projets
+				</h2>
+				<Projects />
+			</SectionContainer>
+
+			<SectionContainer id="sobre-mi">
+				<h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/90 dark:text-white/90">
+					<ProfileCheck class="size-7" />
+					À propos de moi
+				</h2>
+				<AboutMe />
+			</SectionContainer>
+		</div>
+	</main>
+</Layout>

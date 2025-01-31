@@ -1,0 +1,52 @@
+--- 
+import ExperienceItem from './ExperienceItem.astro';
+
+const EXPERIENCIE = [
+  {
+    date: '2025 - actuellement',
+    title: 'Alternance en Développement LUA et Création d\'Applications',
+    description: 'Travail en alternance sur le développement de scripts en  LUA   et la création d\' applications   dans le cadre de projets professionnels, à partir de juillet 2025.'
+  },
+  {
+    date: '2024 - 2025',
+    title: 'Stage Professionnel en Cybersécurité',
+    description: 'Mission en  Cryptographie   et  Stéganographie d\'image 3D   dans un cadre de développement en cybersécurité.'
+  },  
+  {
+    date: '2023 - 2025 (actuellement)',
+    title: 'BUT Informatique',
+    description: 'Étudiant en 3ème année de  BUT Informatique  , me préparant à devenir  Ingénieur en Cybersécurité  . Formation en cours jusqu\'à juillet 2025.'
+  },
+  {
+    date: '2021',
+    title: 'Baccalauréat Général avec option Mathématiques, Physique, NSI',
+    description: 'Obtention du  Bac avec mention  , spécialisation en  Mathématiques  ,  Physique   et  NSI   (Numérique et Sciences Informatiques).'
+  }
+];
+---
+
+<style>
+  .experience-item {
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .experience-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+  }
+
+  .experience-item strong {
+    font-weight: bold;
+  }
+</style>
+
+<ol class="relative mt-16">
+  {EXPERIENCIE.map((experience) => (
+    <li class="experience-item">
+      <ExperienceItem {...experience} />
+    </li>
+  ))}
+</ol>

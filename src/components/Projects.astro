@@ -1,0 +1,190 @@
+---
+import LinkButton from './LinkButton.astro';
+import { TAGS } from './TagsIcons.astro';
+import ExitIcon from '@/components/icons/Exit.astro';
+import { SKILLS } from './Skills.astro';
+
+
+const PROJECTS = [
+	{
+		title: 'Site web full-stack EMCAFFE',
+    description: `Développement d'un site web complet pour EMCAFFE, une TPE spécialisée dans l'importation et l'exportation de café en provenance d'Amérique du Sud. Le site est conçu avec le framework Astro, et il propose une expérience utilisateur moderne et performante.\n
+    Le projet se concentre sur la gestion efficace des contenus, en particulier des catalogues de produits liés au café. Il inclut un système intuitif pour les administrateurs permettant de gérer et de modifier les stocks et les informations sur les produits. Une intégration de WebSocket a été mise en place pour fournir une mise à jour en temps réel des informations sur les stocks.\n
+    En exploitant les bonnes pratiques en développement web, le projet met l'accent sur l'optimisation des performances, la modularité et la maintenance du système. Ce site répond aux besoins spécifiques d'une société de commerce de café en ligne.`,
+    link: 'https://emcaffe-dev.pages.dev/fr/',
+    image: '/projects/capture emcafee.png',
+		tags: [TAGS.TYPESCRIPT,TAGS.GITHUB, TAGS.TAILWIND],
+		skills: [SKILLS.UNE, SKILLS.CINQ, SKILLS.SIX],
+	},
+	{
+  title: 'Site Web Portfolio',
+  description:
+    "J'ai développé un site web portfolio pour mettre en avant mes compétences en développement. Le site présente mes projets réalisés en utilisant diverses technologies web, et il a été conçu pour refléter mes compétences en développement d'applications et optimisation d'applications. Le projet utilise des technologies modernes comme TypeScript et MongoDB pour gérer les données de manière robuste et assurer des performances optimisées.",
+  link: '',
+  image: '/projects/capture site.png',
+  tags: [TAGS.TYPESCRIPT, TAGS.MONGODB],
+  skills: [SKILLS.UNE, SKILLS.DEUX],
+},
+
+{
+  title: 'Site Web - JO',
+  description: `J'ai développé un site web en Symfony permettant de visualiser les athlètes des Jeux Olympiques, ainsi que les disciplines et les pays. Le site présente une interface moderne et intuitive pour afficher les informations relatives aux athlètes et aux compétitions, offrant une expérience utilisateur fluide et rapide.\n
+  Le projet inclut une gestion avancée des données avec des fonctionnalités permettant de filtrer par discipline, pays et athlète. L'architecture repose sur Symfony, garantissant une application robuste et évolutive.\n
+  En backend, le site est optimisé pour le traitement rapide des données et l'affichage dynamique des informations, avec des fonctionnalités de sécurité et d'authentification pour protéger les données sensibles.`,
+  link: 'http://193.54.227.208/~PHP3012/symfony/public/JO',
+  image: '/projects/jo.png',
+  tags: [TAGS.BOOTSTRAP],
+  skills: [SKILLS.UNE, SKILLS.TROIS, SKILLS.QUATRE],
+},
+
+	{
+		title: 'Application Flappy Bird',
+		description: `J'ai développé une application de jeu inspirée de Flappy Bird. L'application permet aux utilisateurs de jouer directement avec un système de leaderboard et des statistiques en temps réel. En plus du gameplay classique, des fonctionnalités supplémentaires telles que des événements et des commandes personnalisées ont été ajoutées pour améliorer l'expérience utilisateur.\n
+  Le projet a été optimisé pour une gestion fluide des utilisateurs et une interaction rapide avec le serveur, garantissant ainsi une expérience de jeu agréable et sans interruption.`,
+  link: 'https://github.com/wailgana/FloppyBird',
+		image: '/projects/flappy.jpg',
+		tags: [TAGS.GITHUB],
+		skills: [SKILLS.UNE,SKILLS.DEUX, SKILLS.CINQ],
+	},
+	{
+    title: 'Bot Discord - Administration Serveur',
+    description: `Développement d'un bot Discord destiné à l'administration de serveurs. Ce bot permet de gérer efficacement les utilisateurs, automatiser les tâches de modération et assurer une gestion fluide des permissions et des rôles en temps réel. Il offre une personnalisation poussée pour répondre aux besoins spécifiques de chaque serveur.`,
+    image: '/projects/discord.png',
+    tags: [TAGS.NODE],
+    skills: [SKILLS.UNE, SKILLS.TROIS], // Ajoute des compétences plus spécifiques comme 'Développement' et 'Administration Système'
+}
+];
+	---
+	<div class="flex flex-col gap-y-16">
+	  {
+		PROJECTS.map(({ image, title, description, tags, skills = [], link }) => (
+		  <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+			<div class="w-full md:w-1/2">
+			  <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-zinc-800 lg:hover:border-zinc-700 lg:hover:bg-zinc-800/50">
+				<img
+				  alt={`Image de ${title}`}
+				  class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105 cursor-pointer"
+				  loading="lazy"
+				  src={image}
+				  data-modal-target={`image-modal-${title}`}
+				  data-modal-toggle={`image-modal-${title}`}
+				/>
+			  </div>
+			</div>
+	
+			<div class="w-full md:w-1/2 md:max-w-lg">
+			  <h3 class="text-2xl font-bold text-zinc-800 dark:text-zinc-100">{title}</h3>
+			  <div class="flex flex-wrap mt-2">
+				<ul class="flex xl:flex-row flex-wrap mb-2 gap-2">
+				  {tags.map((tag) => (
+					<li>
+					  <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+						<tag.icon class="size-4" />
+						{tag.name}
+					  </span>
+					</li>
+				  ))}
+				</ul>
+	
+				<div class="mt-2 text-zinc-700 dark:text-zinc-400">
+				  {description.length > 200 ? (
+					<>
+					  <p>{description.slice(0, 200)}...</p>
+					  <button
+						data-modal-target={`modal-${title}`}
+						data-modal-toggle={`modal-${title}`}
+						class="flex items-center gap-2 group-hover:underline decoration-zinc-500 decoration-dotted underline-offset-4"
+						type="button"
+					  >
+						Voir plus de détails
+						<svg width="13" height="13" stroke="currentColor" stroke-width="2" class="lucide-icon lucide lucide-arrow-up-right opacity-50 duration-200 group-hover:translate-x-[1.5px] group-hover:opacity-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						  <path d="M7 7h10v10" />
+						  <path d="M7 17 17 7" />
+						</svg>
+					  </button>
+					</>
+				  ) : (
+					<p style={{ whiteSpace: 'pre-line' }}>{description}</p>
+				  )}
+	
+				  {/* Modale pour l'image */}
+				  <div id={`image-modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full md:inset-0 max-h-full backdrop-blur-2xl transition">
+					<div class="relative p-4 w-full max-w-max">
+					  <div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
+						<button type="button" class="absolute top-2 right-2 bg-white/5 border-2 dark:border-white/10 border-zinc-300 rounded-full p-1" data-modal-hide={`image-modal-${title}`}>
+						  <ExitIcon class="size-4 text-zinc-300 dark:text-white" />
+						  <span class="sr-only">Fermer la modale</span>
+						</button>
+						<img src={image} alt={`Image agrandie de ${title}`} class="object-cover w-[100vh] h-full rounded-lg" />
+					  </div>
+					</div>
+				  </div>
+	
+				  {/* Modale pour la description */}
+				  <div id={`modal-${title}`} tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full backdrop-blur-2xl transition">
+					<div class="relative p-4 w-full max-w-2xl max-h-full">
+					  <div class="relative bg-neutral-200 dark:bg-black rounded-lg shadow">
+						<div class="flex items-center justify-between p-4 md:p-5 border-b dark:border-white/10 border-zinc-300 rounded-t">
+						  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Détails de {title}</h3>
+						  <button type="button" class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10" data-modal-hide={`modal-${title}`}>
+							<ExitIcon class="size-4 text-black/90 dark:text-white/90" />
+							<span class="sr-only">Fermer la modale</span>
+						  </button>
+						</div>
+						<div class="p-4 md:p-5 space-y-4">
+						  <p style={{ whiteSpace: 'pre-line' }}>{description}</p>
+						</div>
+						<div class="flex items-center p-4 md:p-5 border-t dark:border-white/10 border-zinc-300 rounded-b">
+						  <button data-modal-hide={`modal-${title}`} type="button" class="bg-white/5 border dark:border-white/10 border-zinc-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition hover:scale-110 hover:bg-white/10">
+							Fermer
+						  </button>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+	
+				{skills.length > 0 && (
+				  <div class="mt-4">
+					<h4 class="text-lg font-semibold text-zinc-800 dark:text-zinc-100">Compétences</h4>
+					<ul class="flex flex-wrap gap-2 mt-2">
+					  {skills.map((skill) => (
+						<li key={skill.name}>
+						  <span class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm ${skill.color}`}>
+							{skill.icon} {skill.name}
+						  </span>
+						</li>
+					  ))}
+					</ul>
+				  </div>
+				)}
+	
+				<footer class="flex gap-x-4 items-end justify-start mt-4">
+				  <a
+					href={link}
+					target="_blank"
+					class="flex items-center gap-x-2 px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600 transition"
+				  >
+					<svg
+					  width="24"
+					  height="24"
+					  viewBox="0 0 24 24"
+					  stroke-width="1.5"
+					  stroke="currentColor"
+					  fill="none"
+					  stroke-linecap="round"
+					  stroke-linejoin="round"
+					>
+					  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					  <path d="M7 7h10v10" />
+					  <path d="M7 17 17 7" />
+					</svg>
+					Consultez le site web
+				  </a>
+				</footer>
+			  </div>
+			</div>
+		  </article>
+		))
+	  }
+	</div>
